@@ -1,0 +1,44 @@
+﻿<Window x:Class="CarInventoryManagement.StartupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarInventoryManagement"
+        mc:Ignorable="d"
+        Title="Startup" Height="480" Width="640"
+        ResizeMode="NoResize">
+    <!-- 
+        Initialises the window.
+        ResizedMode will stop the window from being resized as long as it is set to "NoResize".
+    -->
+
+    <Grid Margin="0,0,0,0">
+        <Button x:Name="ResetAllDataButton" Content="RESET" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="56" Click="ResetAllDataButton_Click" Margin="570,415,0,0"/>
+        <!-- 
+            Assigns the name "ResetAllDataButton" to the button labelled "RESET". This button will remove all saved data.S
+            Opens a popup.
+        -->
+        <Button x:Name="SystemSetupButton" Content="Setup" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="152" Margin="150,180,0,0" Click="SystemSetupButton_Click"/>
+        <!--
+            Assigns the name "SystemSetupButton" to the button labelled "Setup". This button begin the setup of the system.
+            Opens a window.
+        -->
+        <Button x:Name="SystemLoginButton" Content="Login" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="152" Click="SystemLoginButton_Click" Margin="338,180,0,0"/>
+        <!--
+            Assigns the name "SystemLoginButton" to the button labelled "Login". This button take the user to the login window.
+            Opens a window.
+        -->
+
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,49,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="27" Width="436" Text="Go Cars' Inventory Management Software"/>
+        <!-- Holds the text for the title. -->
+        <TextBlock x:Name="SetupText" HorizontalAlignment="Left" Margin="150,212,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="140" Width="152"><Run Language="en-gb" Text="Note:"/><LineBreak/><Run/><LineBreak/><Run Text="If"/><Run Language="en-gb" Text=" this is the first time that you are running this software, please press the above to continue and setup the application for your business."/></TextBlock>
+        <TextBlock x:Name="LoginText" HorizontalAlignment="Left" Margin="338,212,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="140" Width="152" Foreground="Black"><Run Text="Note:"/><LineBreak/><Run/><LineBreak/><Run Text="If"/><Run Text=" "/><Run Language="en-gb" Text="you have previously setup the application for your business, please press the above to continue."/></TextBlock>
+        <!-- Hold descriptions for each button, except for the one labelled "RESET". -->
+
+
+        <Image HorizontalAlignment="Left" Height="34" Margin="533,412,0,0" VerticalAlignment="Top" Width="35"/>
+        <!-- Element that will display the icon that is attached to it. -->
+
+    </Grid>
+</Window>
