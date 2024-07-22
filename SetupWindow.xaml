@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarInventoryManagement"
         mc:Ignorable="d"
-        Title="SetupWindow" Height="450" Width="800">
+        Title="Setup" Height="480" Width="640"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Grid Margin="2,0,-2,0">
+            <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top" Height="21" Width="80" Click="SubmitButton_Click"/>
+            <TextBox x:Name="companyName" HorizontalAlignment="Center" Margin="0,138,0,0" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="userFullName" HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" Text="Full Name" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="password1" HorizontalAlignment="Center" Margin="0,206,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="password2" HorizontalAlignment="Center" Margin="0,229,0,0" TextWrapping="Wrap" Text="Confirm Password" VerticalAlignment="Top" Width="120"/>
+
+            <TextBlock  HorizontalAlignment="Center" Margin="0,46,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="209" FontSize="20"><Run Language="en-gb" Text="Setup"/></TextBlock>
+            <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="Red"/>
+        </Grid>
+
     </Grid>
 </Window>
