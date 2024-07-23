@@ -1,5 +1,9 @@
-﻿using CarInventoryManagement.Objects;
-using System.Reflection;
+﻿using CarInventoryManagement.Classes;
+using CarInventoryManagement.Objects;
+using CsvHelper;
+using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
 using System.Windows;
 
 namespace CarInventoryManagement
@@ -11,7 +15,7 @@ namespace CarInventoryManagement
     {
         bool isFilled = false;
         bool passMatch = false;
-
+        
 
         UserObject newAdminUser = new UserObject();
 
@@ -41,6 +45,8 @@ namespace CarInventoryManagement
 
                 newAdminUser.UserPassword = hashPassword(password1.Text);
                 // Adds a hashed variant of the user's password to the object
+
+                AddNewUser();
             }
             else 
             {      
@@ -75,20 +81,43 @@ namespace CarInventoryManagement
 
         private string GenerateUserID(string userName, string companyName)
         {
-            // Code to generate an ID based on the user's name and company name
-            return "null";
+            Random rand = new Random();
+            // Creates a new random object used to create random values in a given range.
+
+            string idNum = rand.Next(100, 999).ToString();
+            // Generates a random value from 100-999.
+
+            string id = $"{userName.Substring(0,3)}{idNum}@{companyName.Substring(3)}";
+            // Puts together the different parts of the string to make an ID for the admin user.
+
+            return id;
+            // passes out the id.
         }
 
         private string hashPassword(string password)
         {
+            password = Hash.ToSHA256(password);
+            // Uses the ToSHA256 method in the Hash class in order to hash the password
+
             return password;
         }
 
 
-        private void AddNewUser(string UserID, string UserPassword, int UserTier)
+        private void AddNewUser()
         {
+            var records = new List<UserObject>()
+            {
+                newAdminUser
+            };
+            // Creates an array to hold the user objects, read to be written to the csv file
 
-            // Creates a new csv file.
+            using (var writer = new StreamWriter(@"C:\Users\alidi\AppData\Roaming\Car Inventory Managment\CIM Saves\Users"))
+                // This is the directory where the file will be saved
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(records);
+            }
+            // This writes the information directly to the file, it will create a new file if 1 is not found.
 
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarInventoryManagement.Objects
 {
-    internal class UserObject
+    public class UserObject
     {
         public string? userID { get; set; }
         public string? UserPassword { get; set; }
