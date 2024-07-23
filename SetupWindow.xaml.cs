@@ -3,7 +3,6 @@ using CarInventoryManagement.Objects;
 using CsvHelper;
 using System.Globalization;
 using System.IO;
-using System.Security.Cryptography;
 using System.Windows;
 
 namespace CarInventoryManagement
@@ -22,8 +21,7 @@ namespace CarInventoryManagement
         public SetupWindow()
         {
             InitializeComponent();
-            
-            
+
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -47,6 +45,14 @@ namespace CarInventoryManagement
                 // Adds a hashed variant of the user's password to the object
 
                 AddNewUser();
+                WarningText.Text = "Setup Successful!";
+                StartupWindow startupWin = new StartupWindow();
+                startupWin.hasSetup = true;
+                startupWin.Visibility = Visibility.Visible;
+                this.Close();
+
+
+
             }
             else 
             {      
@@ -111,7 +117,7 @@ namespace CarInventoryManagement
             };
             // Creates an array to hold the user objects, read to be written to the csv file
 
-            using (var writer = new StreamWriter(@"C:\Users\alidi\AppData\Roaming\Car Inventory Managment\CIM Saves\Users"))
+            using (var writer = new StreamWriter(@"C:\Users\alidi\Documents\CIM\Users\userobj.csv"))
                 // This is the directory where the file will be saved
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
