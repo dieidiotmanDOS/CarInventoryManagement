@@ -2,6 +2,6 @@ Car Inventory Management or CIM is a software developed by Artin Yousefinia usin
 
 Features:
   > User is able to begin setting up their system, though with many bugs, missing functionality and major issues across the field.
-  \n*As of 24/07/2024
+  -As of 24/07/2024
 
   > 
