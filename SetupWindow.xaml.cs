@@ -64,7 +64,7 @@ namespace CarInventoryManagement
         
         private bool checkFields()
         {
-            if (!(companyName.Text == null && userFullName.Text == null && password1.Text == null && password2.Text == null))
+            if (!(companyName.Text == "" && userFullName.Text == "" && password1.Text == "" && password2.Text == ""))
             {
                 return true;
             }
@@ -93,7 +93,7 @@ namespace CarInventoryManagement
             string idNum = rand.Next(100, 999).ToString();
             // Generates a random value from 100-999.
 
-            string id = $"{userName.Substring(0,3)}{idNum}@{companyName.Substring(3)}";
+            string id = $"{userName.Substring(0,3)}{idNum}@{companyName.Substring(0,3)}";
             // Puts together the different parts of the string to make an ID for the admin user.
 
             return id;
@@ -126,5 +126,76 @@ namespace CarInventoryManagement
             // This writes the information directly to the file, it will create a new file if 1 is not found.
 
         }
+
+
+        private void txtBox1_Down(object sender, RoutedEventArgs e)
+        {
+            if (companyName.Text == "Company Name") 
+            {
+                companyName.Text = "";
+            }
+            
+        }
+        private void txtBox2_Down(object sender, RoutedEventArgs e)
+        {
+            if (userFullName.Text == "Full Name") 
+            {
+                userFullName.Text = "";
+            }
+            
+        }
+        private void txtBox3_Down(object sender, RoutedEventArgs e)
+        {
+            if (password1.Text == "Password") 
+            {
+                password1.Text = "";
+            }
+            
+        }
+        private void txtBox4_Down(object sender, RoutedEventArgs e)
+        {
+            if (password2.Text == "Confirm Password") 
+            {
+                password2.Text = "";
+            }
+        }
+
+        private void txtBox1_lostFocus(object sender, RoutedEventArgs e)
+        {
+            if (companyName.Text == "") 
+            {
+                companyName.Text = "Company Name";
+            }
+
+            
+        }
+
+        private void txtBox2_lostFocus(object sender, RoutedEventArgs e)
+        {
+            if (userFullName.Text == "")
+            {
+                userFullName.Text = "Full Name";
+            }
+           
+        }
+
+        private void txtBox3_lostFocus(object sender, RoutedEventArgs e)
+        {
+            if (password1.Text == "")
+            {
+                password1.Text = "Password";
+            }
+            
+        }
+
+        private void txtBox4_lostFocus(object sender, RoutedEventArgs e)
+        {
+            if (password2.Text == "")
+            {
+                password2.Text = "Confirm Password";
+            }
+            
+        }
+
     }
 }

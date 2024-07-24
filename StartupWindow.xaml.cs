@@ -44,7 +44,7 @@ namespace CarInventoryManagement
             } 
             else
             {
-                LoginText.Foreground = Brushes.Red;
+                SetupText.Foreground = Brushes.Red;
                 // Turns the text red to warn the user about their mistake.
 
             }

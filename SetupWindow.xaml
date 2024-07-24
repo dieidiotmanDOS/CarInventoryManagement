@@ -10,10 +10,10 @@
     <Grid>
         <Grid Margin="2,0,-2,0">
             <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top" Height="21" Width="80" Click="SubmitButton_Click"/>
-            <TextBox x:Name="companyName" HorizontalAlignment="Center" Margin="0,138,0,0" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="userFullName" HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" Text="Full Name" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="password1" HorizontalAlignment="Center" Margin="0,206,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="password2" HorizontalAlignment="Center" Margin="0,229,0,0" TextWrapping="Wrap" Text="Confirm Password" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="companyName" HorizontalAlignment="Center" Margin="0,138,0,0" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Width="120" GotFocus="txtBox1_Down" LostFocus="txtBox1_lostFocus" />
+            <TextBox x:Name="userFullName" HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" Text="Full Name" VerticalAlignment="Top" Width="120" GotFocus="txtBox2_Down" LostFocus="txtBox2_lostFocus"/>
+            <TextBox x:Name="password1" HorizontalAlignment="Center" Margin="0,206,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" GotFocus="txtBox3_Down" LostFocus="txtBox3_lostFocus"/>
+            <TextBox x:Name="password2" HorizontalAlignment="Center" Margin="0,229,0,0" TextWrapping="Wrap" Text="Confirm Password" VerticalAlignment="Top" Width="120" GotFocus="txtBox4_Down" LostFocus="txtBox4_lostFocus"/>
 
             <TextBlock  HorizontalAlignment="Center" Margin="0,46,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="209" FontSize="20"><Run Language="en-gb" Text="Setup"/></TextBlock>
             <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="Red"/>
