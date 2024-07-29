@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarInventoryManagement"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Setup" Height="480" Width="640"
+        ResizeMode="NoResize">
+    <Grid Margin="2,0,-2,0">
+        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Center" Margin="0,297,0,0" VerticalAlignment="Top" Height="21" Width="80" Click="LoginButton_Click"/>
+        <TextBox x:Name="userID" HorizontalAlignment="Center" Margin="0,191,0,0" TextWrapping="Wrap" Text="User ID" VerticalAlignment="Top" Width="120" GotFocus="txtBox1_Down" LostFocus="txtBox1_lostFocus" />
+        <TextBox x:Name="userPassword" HorizontalAlignment="Center" Margin="0,214,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" GotFocus="txtBox2_Down" LostFocus="txtBox2_lostFocus"/>
+
+        <TextBlock  HorizontalAlignment="Center" Margin="0,46,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="209" FontSize="20"><Run Language="en-gb" Text="Login"/></TextBlock>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" Foreground="Red"/>
     </Grid>
 </Window>

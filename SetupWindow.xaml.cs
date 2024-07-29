@@ -127,7 +127,7 @@ namespace CarInventoryManagement
 
         }
 
-
+        // IGNORE BEYOND THIS POINT //
         private void txtBox1_Down(object sender, RoutedEventArgs e)
         {
             if (companyName.Text == "Company Name") 
