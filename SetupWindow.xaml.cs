@@ -3,17 +3,25 @@ using CarInventoryManagement.Objects;
 using CsvHelper;
 using System.Globalization;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace CarInventoryManagement
 {
     /// <summary>
-    /// Interaction logic for SetupWindow.xaml
+    /// Interaction logic for SetupWindow.xaml 
     /// </summary>
     public partial class SetupWindow : Window
     {
         bool isFilled = false;
         bool passMatch = false;
+
+        int accountNum = 0;
+
+        public static SetupWindow? instance;
+        // References this specific window instance.
+
+        public string userIdentifier = "";
         
 
         UserObject newAdminUser = new UserObject();
@@ -21,7 +29,8 @@ namespace CarInventoryManagement
         public SetupWindow()
         {
             InitializeComponent();
-
+            instance = this;
+            // Declares it.
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -46,7 +55,19 @@ namespace CarInventoryManagement
 
                 AddNewUser();
                 WarningText.Text = "Setup Successful!";
+
+                ShowUserIdPopup popup = new ShowUserIdPopup();
+                // Gets the other window's object and assigns it to a variable.
+
+                popup.ShowDialog();
+                // Opens that window as a popup, so that the user cannot open this window twice by switching back to the other one.
+
+
+
                 StartupWindow startupWin = new StartupWindow();
+
+
+
                 startupWin.hasSetup = true;
                 startupWin.Visibility = Visibility.Visible;
                 this.Close();
@@ -87,17 +108,30 @@ namespace CarInventoryManagement
 
         private string GenerateUserID(string userName, string companyName)
         {
-            Random rand = new Random();
-            // Creates a new random object used to create random values in a given range.
+            string firstname = userName.Split(' ')[0];
+            // Get the first name of the user.
 
-            string idNum = rand.Next(100, 999).ToString();
-            // Generates a random value from 100-999.
+            string company = "";
+            // Initialise the string.
 
-            string id = $"{userName.Substring(0,3)}{idNum}@{companyName.Substring(0,3)}";
-            // Puts together the different parts of the string to make an ID for the admin user.
+            string[] comStr = companyName.Split(" ");
+            // Create a list of substrings that are split via a SPACE character.
 
-            return id;
-            // passes out the id.
+            foreach (string str in comStr)
+            {
+                company += str;
+            }
+            // For each substring, add them to the company string.
+
+            userIdentifier = firstname + company + accountNum.ToString();
+            // Storing the id in variable for later.
+
+            accountNum++;
+            // Increases the account number.
+
+            return userIdentifier;
+            // Return the formatted user ID.
+
         }
 
         private string hashPassword(string password)

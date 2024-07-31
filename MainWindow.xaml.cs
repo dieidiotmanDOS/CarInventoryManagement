@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,6 +24,13 @@ namespace CarInventoryManagement
             StartupWindow startup = new StartupWindow();
             this.Visibility = Visibility.Hidden;
             startup.Show();
+
+            string str = @"C:\Users\alidi\Documents\CIM\Users";
+            if (!Directory.Exists(str))
+            {
+                Directory.CreateDirectory(str);
+                // Creates the directory if it doesn't already exist.
+            }
         }
     }
 }
