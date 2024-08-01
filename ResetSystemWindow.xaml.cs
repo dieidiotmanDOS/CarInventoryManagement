@@ -1,16 +1,10 @@
 ﻿using CarInventoryManagement.Classes;
 using CarInventoryManagement.Objects;
 using CsvHelper;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-
 
 namespace CarInventoryManagement
 {
