@@ -5,12 +5,8 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 
-
 namespace CarInventoryManagement
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         bool isFilled = false;
@@ -75,7 +71,7 @@ namespace CarInventoryManagement
 
         }
 
-        // IGNORE BEYOND THIS POINT //
+        // Methods below are used to give affects to the text boxes when the user clicks on them.
 
         private void txtBox1_Down(object sender, RoutedEventArgs e)
         {
@@ -84,6 +80,7 @@ namespace CarInventoryManagement
                 userID.Text = "";
             }
 
+            // Clears the textbox if the user hasn't written anything into it.
         }
 
         private void txtBox2_Down(object sender, RoutedEventArgs e)
@@ -93,6 +90,7 @@ namespace CarInventoryManagement
                 userPassword.Text = "";
             }
 
+            // Clears the textbox if the user hasn't written anything into it.
         }
 
         private void txtBox1_lostFocus(object sender, RoutedEventArgs e)
@@ -102,7 +100,7 @@ namespace CarInventoryManagement
                 userID.Text = "User ID";
             }
 
-
+            // Resets the textbox if the user hasn't typed in anything.
         }
 
         private void txtBox2_lostFocus(object sender, RoutedEventArgs e)
@@ -112,6 +110,7 @@ namespace CarInventoryManagement
                 userPassword.Text = "Password";
             }
 
+            // Resets the textbox if the user hasn't typed in anything.
         }
     }
 }

@@ -3,34 +3,34 @@ using CarInventoryManagement.Objects;
 using CsvHelper;
 using System.Globalization;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace CarInventoryManagement
 {
-    /// <summary>
-    /// Interaction logic for SetupWindow.xaml 
-    /// </summary>
     public partial class SetupWindow : Window
     {
+        // Booleans
         bool isFilled = false;
         bool passMatch = false;
 
+        // Integers
         int accountNum = 0;
 
-        public static SetupWindow? instance;
-        // References this specific window instance.
-
+        // Strings
         public string userIdentifier = "";
-        
 
+        // Objects
         UserObject newAdminUser = new UserObject();
 
+        // Reference to specific window instance.
+        public static SetupWindow? instance;
+       
         public SetupWindow()
         {
             InitializeComponent();
+
             instance = this;
-            // Declares it.
+            // Declares this window's instance.
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -43,7 +43,6 @@ namespace CarInventoryManagement
 
             if (isFilled && passMatch) 
             {
-
                 newAdminUser.userID = GenerateUserID(userFullName.Text, companyName.Text);
                 // Generates a userID and adds it to the object.
 
@@ -62,17 +61,12 @@ namespace CarInventoryManagement
                 popup.ShowDialog();
                 // Opens that window as a popup, so that the user cannot open this window twice by switching back to the other one.
 
-
-
                 StartupWindow startupWin = new StartupWindow();
-
-
 
                 startupWin.hasSetup = true;
                 startupWin.Visibility = Visibility.Visible;
                 this.Close();
-
-
+                // Sends the user back to the startup window.
 
             }
             else 
@@ -80,7 +74,6 @@ namespace CarInventoryManagement
                 WarningText.Text = "Please ensure that all fields are filled.\nAnd that the passwords entered match!";
                 // Warns the user of their mistake
             }
-
         }
         
         private bool checkFields()
@@ -92,7 +85,6 @@ namespace CarInventoryManagement
             else return false;
 
             // Checks if any of the fields are empty/null.
-            
         }
 
         private bool checkPass()
@@ -131,7 +123,6 @@ namespace CarInventoryManagement
 
             return userIdentifier;
             // Return the formatted user ID.
-
         }
 
         private string hashPassword(string password)
@@ -141,7 +132,6 @@ namespace CarInventoryManagement
 
             return password;
         }
-
 
         private void AddNewUser()
         {
@@ -158,17 +148,18 @@ namespace CarInventoryManagement
                 csv.WriteRecords(records);
             }
             // This writes the information directly to the file, it will create a new file if 1 is not found.
-
         }
 
-        // IGNORE BEYOND THIS POINT //
+        // Methods below are used to give affects to the text boxes when the user clicks on them.
+
         private void txtBox1_Down(object sender, RoutedEventArgs e)
         {
             if (companyName.Text == "Company Name") 
             {
                 companyName.Text = "";
             }
-            
+
+            // Clears the textbox if the user hasn't written anything into it.
         }
         private void txtBox2_Down(object sender, RoutedEventArgs e)
         {
@@ -176,7 +167,8 @@ namespace CarInventoryManagement
             {
                 userFullName.Text = "";
             }
-            
+
+            // Clears the textbox if the user hasn't written anything into it.
         }
         private void txtBox3_Down(object sender, RoutedEventArgs e)
         {
@@ -184,7 +176,8 @@ namespace CarInventoryManagement
             {
                 password1.Text = "";
             }
-            
+
+            // Clears the textbox if the user hasn't written anything into it.
         }
         private void txtBox4_Down(object sender, RoutedEventArgs e)
         {
@@ -192,6 +185,8 @@ namespace CarInventoryManagement
             {
                 password2.Text = "";
             }
+
+            // Clears the textbox if the user hasn't written anything into it.
         }
 
         private void txtBox1_lostFocus(object sender, RoutedEventArgs e)
@@ -201,7 +196,7 @@ namespace CarInventoryManagement
                 companyName.Text = "Company Name";
             }
 
-            
+            // Resets the textbox if the user hasn't typed in anything.
         }
 
         private void txtBox2_lostFocus(object sender, RoutedEventArgs e)
@@ -210,7 +205,8 @@ namespace CarInventoryManagement
             {
                 userFullName.Text = "Full Name";
             }
-           
+
+            // Resets the textbox if the user hasn't typed in anything.
         }
 
         private void txtBox3_lostFocus(object sender, RoutedEventArgs e)
@@ -219,7 +215,8 @@ namespace CarInventoryManagement
             {
                 password1.Text = "Password";
             }
-            
+
+            // Resets the textbox if the user hasn't typed in anything.
         }
 
         private void txtBox4_lostFocus(object sender, RoutedEventArgs e)
@@ -228,8 +225,8 @@ namespace CarInventoryManagement
             {
                 password2.Text = "Confirm Password";
             }
-            
-        }
 
+            // Resets the textbox if the user hasn't typed in anything.
+        }
     }
 }
