@@ -1,5 +1,6 @@
 ﻿using CarInventoryManagement.Objects;
 using CsvHelper;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -7,33 +8,32 @@ using System.Windows.Media;
 
 namespace CarInventoryManagement
 {
-    /// <summary>
-    /// Interaction logic for StartupWindow.xaml
-    /// </summary>
-    public partial class StartupWindow : Window
-    {
-
+    public partial class StartupWindow : Window 
+    { 
+        // Booleans
         public bool hasSetup = false;
-        // Ensures that the user can only either setup the system for the first time or login in instead.
-
+        
+        // Reference to this window's instance.
+        public static StartupWindow? instance;
 
         public StartupWindow()
         {
             InitializeComponent();
+
+            instance = this;
+            // Declares this window's instance.
 
             hasSetup = checkSetup();
             // Checks if the system is already setup or not.
         }
 
         private void ResetAllDataButton_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {    
             ResetSystemWindow resetWin = new ResetSystemWindow();
             // Gets the other window's object and assigns it to a variable.
 
             resetWin.ShowDialog();
             // Opens that window as a popup, so that the user cannot open this window twice by switching back to the other one.
-
         }
 
         private void SystemSetupButton_Click(object sender, RoutedEventArgs e)
@@ -75,7 +75,6 @@ namespace CarInventoryManagement
             {
                 LoginText.Foreground = Brushes.Red;
                 // Turns the text red to warn the user about their mistake.
-
             }
             // A decision is made whether the user has setup the system or not.
         }
@@ -84,8 +83,6 @@ namespace CarInventoryManagement
         {
             string filePath = @"C:\Users\alidi\Documents\CIM\Users\userobj.csv";
             // Points to the file location of the saved login data.
-
-            
 
             if (File.Exists(filePath)) // Checks if the file exists
             {
@@ -109,10 +106,7 @@ namespace CarInventoryManagement
                     else { return true; }
 
                 }
-                catch
-                {
-                    return false;
-                }
+                catch { return false; }
 
                 // Using a try-catch, I attempt to read the first record, if it doesn't exist, usually the program crashes.
                 // However now it will return a false value as it indicates that no records exist.

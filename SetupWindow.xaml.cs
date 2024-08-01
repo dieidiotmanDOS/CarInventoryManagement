@@ -22,7 +22,7 @@ namespace CarInventoryManagement
         // Objects
         UserObject newAdminUser = new UserObject();
 
-        // Reference to specific window instance.
+        // Reference to this window's instance.
         public static SetupWindow? instance;
        
         public SetupWindow()
