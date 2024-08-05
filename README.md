@@ -10,3 +10,5 @@ Features:
     outcome appropriet. -As of 30/07/2024
 
   > The system can now be reset through the reset window. As of 01/08/2024
+
+  > The system can now encryp the user's ID and uses password boxes instead of regular password boxes for typing in passwords. As of 05/08/2024 
