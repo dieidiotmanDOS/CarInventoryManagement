@@ -33,7 +33,7 @@ namespace CarInventoryManagement
 
         private bool checkFields()
         {
-            if (!(userID.Text == "" && userPassword.Text == ""))
+            if (!(userID.Text == "" && userPassword.Password == ""))
             {
                 return true;
             }
@@ -57,7 +57,8 @@ namespace CarInventoryManagement
 
             foreach (var record in records) 
             {
-                if (userID.Text == record.userID && Hash.ToSHA256(userPassword.Text) == record.UserPassword)
+                if (EncryptionSys.Encrypt(userID.Text) == record.userID && Hash.ToSHA256(userPassword.Password) == record.UserPassword) 
+                // 05/08/2024 - Now includes the Encrypt() method to encrypt the user's input for comparison.
                 {
                     WarningText.Text = "Login Successful!";
                     // Open the inventory.
@@ -69,48 +70,6 @@ namespace CarInventoryManagement
             }
             // Goes through all records and checks for the case where both the user id and password match.
 
-        }
-
-        // Methods below are used to give affects to the text boxes when the user clicks on them.
-
-        private void txtBox1_Down(object sender, RoutedEventArgs e)
-        {
-            if (userID.Text == "User ID")
-            {
-                userID.Text = "";
-            }
-
-            // Clears the textbox if the user hasn't written anything into it.
-        }
-
-        private void txtBox2_Down(object sender, RoutedEventArgs e)
-        {
-            if (userPassword.Text == "Password")
-            {
-                userPassword.Text = "";
-            }
-
-            // Clears the textbox if the user hasn't written anything into it.
-        }
-
-        private void txtBox1_lostFocus(object sender, RoutedEventArgs e)
-        {
-            if (userID.Text == "")
-            {
-                userID.Text = "User ID";
-            }
-
-            // Resets the textbox if the user hasn't typed in anything.
-        }
-
-        private void txtBox2_lostFocus(object sender, RoutedEventArgs e)
-        {
-            if (userPassword.Text == "")
-            {
-                userPassword.Text = "Password";
-            }
-
-            // Resets the textbox if the user hasn't typed in anything.
         }
     }
 }

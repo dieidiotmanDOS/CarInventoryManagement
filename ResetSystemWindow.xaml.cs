@@ -52,13 +52,13 @@ namespace CarInventoryManagement
                 reader.Close();
                 // Stops the reader from reading to avoid conflict when deleting the directory.
 
-                if (Hash.ToSHA256(PasswordTextbox.Text) == userpass ) // Comparison of the hashed entered password and the first record's password.
+                if (Hash.ToSHA256(PasswordTextbox.Password) == userpass ) // Comparison of the hashed entered password and the first record's password.
                 {
                     Directory.Delete(@"C:\Users\alidi\Documents\CIM", true);
                     // Deletes the specified directoryt and all of its sub-directories
 
-                    this.Close();
-                    // Closes this window.
+                    System.Windows.Application.Current.Shutdown();
+                    // Closes the application.
                 }
                 else
                 {

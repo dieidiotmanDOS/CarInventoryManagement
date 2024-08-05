@@ -8,11 +8,13 @@
         Title="Setup" Height="480" Width="640"
         ResizeMode="NoResize">
     <Grid Margin="2,0,-2,0">
-        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Center" Margin="0,297,0,0" VerticalAlignment="Top" Height="21" Width="80" Click="LoginButton_Click"/>
-        <TextBox x:Name="userID" HorizontalAlignment="Center" Margin="0,191,0,0" TextWrapping="Wrap" Text="User ID" VerticalAlignment="Top" Width="120" GotFocus="txtBox1_Down" LostFocus="txtBox1_lostFocus" />
-        <TextBox x:Name="userPassword" HorizontalAlignment="Center" Margin="0,214,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" GotFocus="txtBox2_Down" LostFocus="txtBox2_lostFocus"/>
+        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Center" Margin="0,269,0,0" VerticalAlignment="Top" Height="21" Width="80" Click="LoginButton_Click"/>
+        <TextBox x:Name="userID" HorizontalAlignment="Left" Margin="320,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="userPassword" HorizontalAlignment="Left" Margin="320,194,0,0" VerticalAlignment="Top" Width="120"/>
 
         <TextBlock  HorizontalAlignment="Center" Margin="0,46,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="209" FontSize="20"><Run Language="en-gb" Text="Login"/></TextBlock>
-        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" Foreground="Red"/>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Foreground="Red"/>
+        <TextBlock HorizontalAlignment="Left" Margin="263,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-gb" Text="User ID:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="263,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-gb" Text="Password:"/></TextBlock>
     </Grid>
 </Window>

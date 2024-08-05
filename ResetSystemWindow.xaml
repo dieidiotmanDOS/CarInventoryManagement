@@ -11,7 +11,7 @@
         <TextBlock x:Name="MessageTextblock" HorizontalAlignment="Center" Height="79" Margin="0,62,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
         <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Center" Height="25" Margin="0,176,0,0" VerticalAlignment="Top" Width="140" Click="ResetButton_Click"/>
         <TextBlock HorizontalAlignment="Center" Height="26" Margin="0,18,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="18"><Run Language="en-gb" Text="Reset System"/></TextBlock>
-        <TextBox x:Name="PasswordTextbox" HorizontalAlignment="Left" Height="22" Margin="129,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111"/>
+        <PasswordBox x:Name="PasswordTextbox" HorizontalAlignment="Left" Height="22" Margin="129,146,0,0" VerticalAlignment="Top" Width="111"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="65,147,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"><Run Text="Password"/><Run Language="en-gb" Text=":"/></TextBlock>
 
     </Grid>

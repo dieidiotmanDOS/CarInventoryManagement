@@ -43,13 +43,14 @@ namespace CarInventoryManagement
 
             if (isFilled && passMatch) 
             {
-                newAdminUser.userID = GenerateUserID(userFullName.Text, companyName.Text);
+                newAdminUser.userID = EncryptionSys.Encrypt(GenerateUserID(userFullName.Text, companyName.Text));
                 // Generates a userID and adds it to the object.
+                // 05/08/2024 - Now includes the Encrypt() method to encrypt the user ID.
 
                 newAdminUser.UserTier = 3;
                 // Sets the new user's admin permissions to max and adds it to the object.
 
-                newAdminUser.UserPassword = hashPassword(password1.Text);
+                newAdminUser.UserPassword = hashPassword(password1.Password);
                 // Adds a hashed variant of the user's password to the object
 
                 AddNewUser();
@@ -78,7 +79,7 @@ namespace CarInventoryManagement
         
         private bool checkFields()
         {
-            if (!(companyName.Text == "" && userFullName.Text == "" && password1.Text == "" && password2.Text == ""))
+            if (!(companyName.Text == "" && userFullName.Text == "" && password1.Password == "" && password2.Password == ""))
             {
                 return true;
             }
@@ -89,7 +90,7 @@ namespace CarInventoryManagement
 
         private bool checkPass()
         {
-            if (password1.Text == password2.Text)
+            if (password1.Password == password2.Password)
             { 
                 return true;
             }
@@ -148,85 +149,6 @@ namespace CarInventoryManagement
                 csv.WriteRecords(records);
             }
             // This writes the information directly to the file, it will create a new file if 1 is not found.
-        }
-
-        // Methods below are used to give affects to the text boxes when the user clicks on them.
-
-        private void txtBox1_Down(object sender, RoutedEventArgs e)
-        {
-            if (companyName.Text == "Company Name") 
-            {
-                companyName.Text = "";
-            }
-
-            // Clears the textbox if the user hasn't written anything into it.
-        }
-        private void txtBox2_Down(object sender, RoutedEventArgs e)
-        {
-            if (userFullName.Text == "Full Name") 
-            {
-                userFullName.Text = "";
-            }
-
-            // Clears the textbox if the user hasn't written anything into it.
-        }
-        private void txtBox3_Down(object sender, RoutedEventArgs e)
-        {
-            if (password1.Text == "Password") 
-            {
-                password1.Text = "";
-            }
-
-            // Clears the textbox if the user hasn't written anything into it.
-        }
-        private void txtBox4_Down(object sender, RoutedEventArgs e)
-        {
-            if (password2.Text == "Confirm Password") 
-            {
-                password2.Text = "";
-            }
-
-            // Clears the textbox if the user hasn't written anything into it.
-        }
-
-        private void txtBox1_lostFocus(object sender, RoutedEventArgs e)
-        {
-            if (companyName.Text == "") 
-            {
-                companyName.Text = "Company Name";
-            }
-
-            // Resets the textbox if the user hasn't typed in anything.
-        }
-
-        private void txtBox2_lostFocus(object sender, RoutedEventArgs e)
-        {
-            if (userFullName.Text == "")
-            {
-                userFullName.Text = "Full Name";
-            }
-
-            // Resets the textbox if the user hasn't typed in anything.
-        }
-
-        private void txtBox3_lostFocus(object sender, RoutedEventArgs e)
-        {
-            if (password1.Text == "")
-            {
-                password1.Text = "Password";
-            }
-
-            // Resets the textbox if the user hasn't typed in anything.
-        }
-
-        private void txtBox4_lostFocus(object sender, RoutedEventArgs e)
-        {
-            if (password2.Text == "")
-            {
-                password2.Text = "Confirm Password";
-            }
-
-            // Resets the textbox if the user hasn't typed in anything.
         }
     }
 }

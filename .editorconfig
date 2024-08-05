@@ -2,3 +2,6 @@
 
 # CS8602: Dereference of a possibly null reference.
 dotnet_diagnostic.CS8602.severity = silent
+
+# SYSLIB0021: Type or member is obsolete
+dotnet_diagnostic.SYSLIB0021.severity = none
