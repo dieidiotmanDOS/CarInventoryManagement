@@ -11,18 +11,25 @@ namespace CarInventoryManagement
 
             StartupWindow startup = new StartupWindow();
 
-            this.Visibility = Visibility.Hidden;
-
             startup.Show();
             // Displays the startup window.
 
-            string str = @"C:\Users\alidi\Documents\CIM\Users";
+            string dir1 = @"C:\Users\alidi\Documents\CIM\Users";
+            string dir2 = @"C:\Users\alidi\Documents\CIM\Cars";
+            // Location of the two main directories to be made.
 
-            if (!Directory.Exists(str))
+            if (!Directory.Exists(dir1)) // Checks if the directory exists.
             {
-                Directory.CreateDirectory(str);
+                Directory.CreateDirectory(dir1);
                 // Creates the directory if it doesn't already exist.
             }
+            if (!Directory.Exists(dir2)) // Checks if the directory exists.
+            {
+                Directory.CreateDirectory(dir2);
+                // Creates the directory if it doesn't already exist.
+            }
+
+            this.Close();
         }
     }
 }

@@ -11,8 +11,8 @@ namespace CarInventoryManagement.Objects
         public string? CarID { get; set; }
         public string? CarBrand { get; set; }
         public string? CarModel { get; set; }
-        public int CarMake { get; set; }
-        public float CarPrice { get; set; }
-        public float CarColour { get; set; }
+        public string? CarMake { get; set; }
+        public string? CarPrice { get; set; }
+        public string? CarColour { get; set; }
     }
 }

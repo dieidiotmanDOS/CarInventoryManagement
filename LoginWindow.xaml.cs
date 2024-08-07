@@ -61,7 +61,13 @@ namespace CarInventoryManagement
                 // 05/08/2024 - Now includes the Encrypt() method to encrypt the user's input for comparison.
                 {
                     WarningText.Text = "Login Successful!";
-                    // Open the inventory.
+
+                    InventoryWindow inventoryWindow = new InventoryWindow();
+                    inventoryWindow.Show();
+                    // Opens the inventory window.
+
+                    this.Close();
+                    // Closes this window.
                 } else
                 {
                     WarningText.Text = "Check that your user ID and password are correct!";
