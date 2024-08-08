@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarInventoryManagement.Objects
 {
-    internal class CarObject
+    public class CarObject
     {
         public string? CarID { get; set; }
         public string? CarBrand { get; set; }

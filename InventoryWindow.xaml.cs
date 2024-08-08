@@ -1,4 +1,5 @@
-﻿using CarInventoryManagement.Objects;
+﻿using CarInventoryManagement.Classes;
+using CarInventoryManagement.Objects;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Win32;
@@ -16,11 +17,42 @@ namespace CarInventoryManagement
         // Integers
         int curCarId = 0; // Current car ID.
 
+        // File Locations
+        string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv"; // Directory where carobj.csv is saved.
+        string stat_dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Stats\statistics.csv"; // Directory where statistics.txt is saved.
+
+        // Misc.
+        public CarObject? desiredCar;
+        public static InventoryWindow? instance;
+        Statistics stats = new Statistics();
+
         public InventoryWindow()
         {
             InitializeComponent();
 
-            
+            instance = this;
+
+            if (!File.Exists(stat_dir)) // Checks if the file exists
+            {
+                Statistics initial = new Statistics();
+                initial.CarsSold = 0;
+                initial.TotalRevenue = 0;
+                // Initialises the values
+
+                var records = new List<Statistics>()
+                {
+                    initial
+                };
+                // Creates an array to hold the user objects, read to be written to the csv file
+
+                using (var writer = new StreamWriter(stat_dir, true))
+                // This is the directory where the writer will be working.
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(records);
+                }
+                // This writes the information directly to the file, it will create a new file if 1 is not found.
+            }
 
             try 
             { 
@@ -28,7 +60,7 @@ namespace CarInventoryManagement
                 WarningText.Text = "Welcome back...\nPlease make sure that the fields are filled and you use an interger value for the make and a decimal value for the price.";
                 // Attempts to load the data from the csv file.
 
-                int linecount = File.ReadLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv").Count();
+                int linecount = File.ReadLines(dir).Count();
                 curCarId = linecount - 1;
                 // Gets the current car ID via counting the number of lines in the csv file.
             }
@@ -64,7 +96,7 @@ namespace CarInventoryManagement
         private void LoadDataTable()
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.FileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv";
+            openFile.FileName = dir;
 
             CarObject carObj = new CarObject();
             string[] carList;
@@ -108,6 +140,39 @@ namespace CarInventoryManagement
             }
         }
 
+        private void SaveDataTable()
+        {
+            File.WriteAllText(dir, string.Empty);
+            // Clears the csv file so that data doesn't duplicate after saving.
+
+            var records = new List<CarObject>();
+            // Creates an array to hold the car objects.
+
+            foreach (DataRowView row in CarDataGrid.ItemsSource) // Read through all rows in the data grid.
+            {
+                CarObject changedCar = new CarObject();
+               
+                changedCar.CarID = row[0].ToString();
+                changedCar.CarBrand = row[1].ToString();
+                changedCar.CarModel = row[2].ToString();
+                changedCar.CarMake = row[3].ToString();
+                changedCar.CarPrice = row[4].ToString();
+                changedCar.CarColour = row[5].ToString();
+                // Set each attribute.
+
+                records.Add(changedCar);
+                // Add it to the arrray.
+            }
+
+            using (var writer = new StreamWriter(dir, true))
+            // This is the directory where the writer will be working.
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(records);
+            }
+            // This writes the information directly to the file, it will create a new file if 1 is not found.
+        }
+
         private bool FullCheck()
         {
             if (BrandTextbox.Text == "" || ModelTextbox.Text == "" || MakeTextbox.Text == "" || PriceTextbox.Text == "" || ColourTextbox.Text == "") // Checks if any of the fields are empty.
@@ -148,7 +213,7 @@ namespace CarInventoryManagement
 
             try 
             {
-                firstline = File.ReadLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv").First(); // Trys to read the first line
+                firstline = File.ReadLines(dir).First(); // Trys to read the first line
             }
             catch
             {
@@ -164,8 +229,8 @@ namespace CarInventoryManagement
                 };
                 // Creates an array to hold the user objects, read to be written to the csv file
 
-                using (var writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv", true))
-                // This is the directory where the file will be saved
+                using (var writer = new StreamWriter(dir, true))
+                // This is the directory where the writer will be working.
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.WriteRecords(records);
@@ -186,8 +251,8 @@ namespace CarInventoryManagement
                 };
                 // Creates an array to hold the user objects, read to be written to the csv file
 
-                using (var writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv", true))
-                // This is the directory where the file will be saved
+                using (var writer = new StreamWriter(dir, true))
+                // This is the directory where the writer will be working.
                 using (var csv = new CsvWriter(writer, config)) // Uses the created configs.
                 {
                     csv.WriteRecords(records);
@@ -196,10 +261,81 @@ namespace CarInventoryManagement
             }
         }
 
+        private void ProcessSale()
+        {
+            using var reader = new StreamReader(stat_dir);
+            // This is the directory where the csv file is.
+
+            using var csv_r = new CsvReader(reader, CultureInfo.InvariantCulture);
+            // Creates a CsvWriter object.
+
+            var records_r = csv_r.GetRecords<Statistics>();
+            // Reads all records of the csv into an array.
+
+            foreach (var record in records_r)
+            {
+                stats.CarsSold = record.CarsSold + 1;
+                stats.TotalRevenue = record.TotalRevenue + float.Parse(desiredCar.CarPrice);
+            }
+
+            reader.Close();
+            // Closes the reader.
+
+            File.Delete(stat_dir);
+            // Deletes the stat_dir file to be replaced with a new one
+
+            var records_w = new List<Statistics>()
+                {
+                    stats
+                };
+            // Creates an array to hold the user objects, read to be written to the csv file
+
+            using (var writer = new StreamWriter(stat_dir, true))
+            // This is the directory where the file will be saved
+            using (var csv_w = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv_w.WriteRecords(records_w);
+            }
+            // This writes the information directly to the file, it will create a new file if 1 is not found.
+        }
+
+
         private void DeleteCar_Click(object sender, RoutedEventArgs e)
         {
             GetCarIdPopup getCarId = new GetCarIdPopup();
             getCarId.ShowDialog();
+
+            LoadDataTable();
+            // Reloads the table after a record is deleted it is deleted.
         }
+
+        private void SellCar_Click(object sender, RoutedEventArgs e)
+        {
+            GetCarIdPopup getCarId = new GetCarIdPopup();
+            getCarId.ShowDialog();
+
+            ProcessSale();
+
+            LoadDataTable();
+            // Reloads the table after a record is deleted it is deleted.
+        }
+
+        private void ModCar_Click(object sender, RoutedEventArgs e)
+        {
+            CarDataGrid.IsReadOnly = !CarDataGrid.IsReadOnly;
+            // Toggles between read-only and read/write.
+
+            if (CarDataGrid.IsReadOnly) // Saves changes after the user toggles off modify car mode.
+            {
+                SaveDataTable();
+                ModButton.Content = "MODIFY CAR";
+            }
+            else
+            {
+                ModButton.Content = "SAVE CHANGES";
+            }
+        }
+
+        
     }
 }
