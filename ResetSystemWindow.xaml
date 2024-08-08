@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarInventoryManagement"
         mc:Ignorable="d"
-        Title="Setup" Height="260" Width="320"
+        Title="Reset" Height="260" Width="320"
         ResizeMode="NoResize">
     <Grid>
         <TextBlock x:Name="MessageTextblock" HorizontalAlignment="Center" Height="79" Margin="0,62,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>

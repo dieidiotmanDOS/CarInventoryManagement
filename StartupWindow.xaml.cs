@@ -81,7 +81,7 @@ namespace CarInventoryManagement
 
         private bool checkSetup()
         {
-            string filePath = @"C:\Users\alidi\Documents\CIM\Users\userobj.csv";
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Users\userobj.csv";
             // Points to the file location of the saved login data.
 
             if (File.Exists(filePath)) // Checks if the file exists

@@ -37,7 +37,7 @@ namespace CarInventoryManagement
         {
             if (setupStatus)
             {
-                using var reader = new StreamReader(@"C:\Users\alidi\Documents\CIM\Users\userobj.csv");
+                using var reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Users\userobj.csv");
                 // This is the directory where the csv file is.
 
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
@@ -54,10 +54,10 @@ namespace CarInventoryManagement
 
                 if (Hash.ToSHA256(PasswordTextbox.Password) == userpass ) // Comparison of the hashed entered password and the first record's password.
                 {
-                    Directory.Delete(@"C:\Users\alidi\Documents\CIM", true);
+                    Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM", true);
                     // Deletes the specified directoryt and all of its sub-directories
 
-                    System.Windows.Application.Current.Shutdown();
+                    Application.Current.Shutdown();
                     // Closes the application.
                 }
                 else

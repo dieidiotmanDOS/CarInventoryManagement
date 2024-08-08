@@ -46,7 +46,7 @@ namespace CarInventoryManagement
         private void LoginUser()
         {
 
-            using var reader = new StreamReader(@"C:\Users\alidi\Documents\CIM\Users\userobj.csv");
+            using var reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Users\userobj.csv");
             // This is the directory where the csv file is.
 
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);

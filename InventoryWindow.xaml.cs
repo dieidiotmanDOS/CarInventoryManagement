@@ -20,14 +20,17 @@ namespace CarInventoryManagement
         {
             InitializeComponent();
 
-            int linecount = File.ReadLines(@"C:\Users\alidi\Documents\CIM\Cars\carobj.csv").Count();
-            curCarId = linecount - 1;
+            
 
             try 
             { 
                 LoadDataTable();
                 WarningText.Text = "Welcome back...\nPlease make sure that the fields are filled and you use an interger value for the make and a decimal value for the price.";
                 // Attempts to load the data from the csv file.
+
+                int linecount = File.ReadLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv").Count();
+                curCarId = linecount - 1;
+                // Gets the current car ID via counting the number of lines in the csv file.
             }
             catch 
             {
@@ -61,7 +64,7 @@ namespace CarInventoryManagement
         private void LoadDataTable()
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.FileName = @"C:\Users\alidi\Documents\CIM\Cars\carobj.csv";
+            openFile.FileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv";
 
             CarObject carObj = new CarObject();
             string[] carList;
@@ -145,7 +148,7 @@ namespace CarInventoryManagement
 
             try 
             {
-                firstline = File.ReadLines(@"C:\Users\alidi\Documents\CIM\Cars\carobj.csv").First(); // Trys to read the first line
+                firstline = File.ReadLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv").First(); // Trys to read the first line
             }
             catch
             {
@@ -161,7 +164,7 @@ namespace CarInventoryManagement
                 };
                 // Creates an array to hold the user objects, read to be written to the csv file
 
-                using (var writer = new StreamWriter(@"C:\Users\alidi\Documents\CIM\Cars\carobj.csv", true))
+                using (var writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv", true))
                 // This is the directory where the file will be saved
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
@@ -183,7 +186,7 @@ namespace CarInventoryManagement
                 };
                 // Creates an array to hold the user objects, read to be written to the csv file
 
-                using (var writer = new StreamWriter(@"C:\Users\alidi\Documents\CIM\Cars\carobj.csv", true))
+                using (var writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv", true))
                 // This is the directory where the file will be saved
                 using (var csv = new CsvWriter(writer, config)) // Uses the created configs.
                 {
@@ -193,5 +196,10 @@ namespace CarInventoryManagement
             }
         }
 
+        private void DeleteCar_Click(object sender, RoutedEventArgs e)
+        {
+            GetCarIdPopup getCarId = new GetCarIdPopup();
+            getCarId.ShowDialog();
+        }
     }
 }

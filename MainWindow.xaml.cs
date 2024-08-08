@@ -14,8 +14,8 @@ namespace CarInventoryManagement
             startup.Show();
             // Displays the startup window.
 
-            string dir1 = @"C:\Users\alidi\Documents\CIM\Users";
-            string dir2 = @"C:\Users\alidi\Documents\CIM\Cars";
+            string dir1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Users";
+            string dir2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars";
             // Location of the two main directories to be made.
 
             if (!Directory.Exists(dir1)) // Checks if the directory exists.

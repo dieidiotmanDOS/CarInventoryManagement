@@ -16,9 +16,9 @@
         <Button x:Name="LogoutButton" Content="LOGOUT" HorizontalAlignment="Left" Margin="1482,10,0,0" VerticalAlignment="Top" Height="57" Width="98"/>
 
         <Button Content="ADD CAR" HorizontalAlignment="Left" Margin="1114,677,0,0" VerticalAlignment="Top" Height="54" Width="132" FontSize="16" Click="AddCar_Click"/>
-        <Button Content="MODIFY CAR" HorizontalAlignment="Left" Margin="504,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16"/>
-        <Button Content="SELL CAR" HorizontalAlignment="Left" Margin="227,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16"/>
-        <Button Content="DELETE CAR" HorizontalAlignment="Left" Margin="366,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" RenderTransformOrigin="0.955,0.482"/>
+        <Button Content="MODIFY CAR" HorizontalAlignment="Left" Margin="339,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16"/>
+        <Button Content="SELL CAR" HorizontalAlignment="Left" Margin="61,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16"/>
+        <Button Content="DELETE CAR" HorizontalAlignment="Left" Margin="200,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" RenderTransformOrigin="0.955,0.482" Click="DeleteCar_Click"/>
 
         <DataGrid x:Name="CarDataGrid" HorizontalAlignment="Left" Height="644" Margin="61,95,0,0" VerticalAlignment="Top" Width="719" IsReadOnly="True"/>
 

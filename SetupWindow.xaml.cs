@@ -142,7 +142,7 @@ namespace CarInventoryManagement
             };
             // Creates an array to hold the user objects, read to be written to the csv file
 
-            using (var writer = new StreamWriter(@"C:\Users\alidi\Documents\CIM\Users\userobj.csv"))
+            using (var writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Users\userobj.csv"))
                 // This is the directory where the file will be saved
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {

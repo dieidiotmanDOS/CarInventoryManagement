@@ -15,7 +15,6 @@ namespace CarInventoryManagement.Classes
             for (int i = 0; i < bytes.Length; i++)
             {
                 stringBuilder.Append(bytes[i].ToString("x2"));
-
             }
             // Each byte after being hashed is then collected into a string builder which will create the hashed result.
 
