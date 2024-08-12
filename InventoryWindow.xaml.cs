@@ -19,7 +19,8 @@ namespace CarInventoryManagement
 
         // File Locations
         string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\carobj.csv"; // Directory where carobj.csv is saved.
-        string stat_dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Stats\statistics.csv"; // Directory where statistics.txt is saved.
+        string stat_dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Stats\statistics.csv"; // Directory where statistics.csv is saved.
+        string backup_dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CIM\Cars\backup.csv"; // Directory where carobj.csv is backedup.
 
         // Misc.
         public CarObject? desiredCar;
@@ -52,6 +53,15 @@ namespace CarInventoryManagement
                     csv.WriteRecords(records);
                 }
                 // This writes the information directly to the file, it will create a new file if 1 is not found.
+
+                LoadStatistics();
+                // Loads the statistics
+
+            }
+            else
+            {
+                LoadStatistics();
+                // Loads the statistics
             }
 
             try 
@@ -73,6 +83,7 @@ namespace CarInventoryManagement
 
         private void AddCar_Click(object sender, RoutedEventArgs e)
         {
+
             if (FullCheck()) // Runs a full check. Check the function for more information.
             {
                 if (ConfirmBox.IsChecked == true)
@@ -95,6 +106,7 @@ namespace CarInventoryManagement
 
         private void LoadDataTable()
         {
+
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.FileName = dir;
 
@@ -179,15 +191,20 @@ namespace CarInventoryManagement
             {
                 return false;
             }
-            else if (!int.TryParse(MakeTextbox.Text, out int num1)) // Trys to convert the make value into an int.
+            else if (!int.TryParse(MakeTextbox.Text, out int num1)) // Tries to convert the make value into an int.
             {
                 return false;
             }
-            else if (!float.TryParse(PriceTextbox.Text, out float num2)) // Try to convert the price into a float.
+            else if (PriceTextbox.Text.Contains(",")) // Checks if the user entered a comma.
             {
                 return false;
             }
+            else if (!float.TryParse(PriceTextbox.Text, out float num2)) // Tries to conver the price value into a float.
+            {
+                return false;
+            }    
             return true;
+           
         }
 
         private void AddNewCar()
@@ -302,6 +319,11 @@ namespace CarInventoryManagement
 
         private void DeleteCar_Click(object sender, RoutedEventArgs e)
         {
+            if (!File.Exists(dir) || File.ReadAllLines(dir)[0] == string.Empty)
+            {
+                return;
+            }
+
             GetCarIdPopup getCarId = new GetCarIdPopup();
             getCarId.ShowDialog();
 
@@ -311,17 +333,28 @@ namespace CarInventoryManagement
 
         private void SellCar_Click(object sender, RoutedEventArgs e)
         {
+            if (!File.Exists(dir) || File.ReadAllLines(dir)[0] == string.Empty)
+            {
+                return;
+            }
+
             GetCarIdPopup getCarId = new GetCarIdPopup();
             getCarId.ShowDialog();
 
             ProcessSale();
 
             LoadDataTable();
+            LoadStatistics();
             // Reloads the table after a record is deleted it is deleted.
         }
 
         private void ModCar_Click(object sender, RoutedEventArgs e)
         {
+            if (!File.Exists(dir) || File.ReadAllLines(dir)[0] == string.Empty)
+            {
+                return;
+            }
+
             CarDataGrid.IsReadOnly = !CarDataGrid.IsReadOnly;
             // Toggles between read-only and read/write.
 
@@ -336,6 +369,106 @@ namespace CarInventoryManagement
             }
         }
 
-        
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartupWindow startupWindow = new StartupWindow();
+            startupWindow.Show();
+            // Open the startup window
+
+            this.Close();
+            // Close this instance.
+        }
+
+        private void LoadStatistics()
+        {
+            using var reader = new StreamReader(stat_dir);
+            // Creates a new object for reading the file at the directory provided.
+
+            using var csv_r = new CsvReader(reader, CultureInfo.InvariantCulture);
+            // Creates a CsvWriter object.
+
+            var records_r = csv_r.GetRecords<Statistics>();
+            // Reads all records of the csv into an array.
+
+            string cars_sold = "0";
+            string revenue = "0";
+
+            foreach (var record in records_r)
+            {
+                cars_sold = record.CarsSold.ToString();
+                revenue = record.TotalRevenue.ToString();
+                // Gets the values as they cannot be implicitly converted.
+
+
+            }
+            // Loops each record.
+
+            CarsSoldTxt.Text = $"Cars Sold: {cars_sold}";
+            CarsRevenueTxt.Text = $"Total Revenue: {revenue}";
+            // Displays the values.
+            
+
+            reader.Close();
+            // Closes the reader.
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                LoadDataTable();
+                LoadStatistics();
+                // Tries to load data.         
+            }
+            catch
+            {
+                MessageBox.Show("Failed to refresh...");
+            }  
+        }
+
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.ShowDialog();
+
+            string fileExt = Path.GetExtension(openFile.SafeFileName);
+            string fileLocation = openFile.FileName;
+            
+
+            if (fileExt == ".csv")
+            {
+                string firstline = File.ReadAllLines(fileLocation).First();
+                // Gets the first line to check that it has the correct column names.
+
+                if (firstline == "CarID,CarBrand,CarModel,CarMake,CarPrice,CarColour")
+                {
+                    File.Move(dir, backup_dir);
+                    // Deletes the old file
+                    
+                    File.Move(fileLocation, dir);
+                    // Replaces it with a new one.
+
+                    try
+                    {
+                        LoadDataTable();
+                        // Attempts to refresh the table.
+                    }
+                    catch
+                    {
+                        MessageBox.Show("There was a problem trying to load the newly imported csv file, reverting changes...");
+                        File.Move(backup_dir, dir);
+                        // Moves the backedup file back.
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There was a problem trying to load the provided file...");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You can only import .csv files...");
+            }
+        }
     }
 }

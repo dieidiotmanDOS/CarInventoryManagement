@@ -43,8 +43,8 @@ namespace CarInventoryManagement
             SetupWindow setupWin = new SetupWindow();
             // Gets the other window's object and assigns it to a variable
 
-            this.Visibility = Visibility.Hidden;
-            // Hides the current window, incase the user presses the back button.
+            this.Close();
+            // Closes this window.
 
             setupWin.Show();
             // Displays the assigned window.
@@ -65,8 +65,8 @@ namespace CarInventoryManagement
                 LoginWindow loginWin = new LoginWindow();
                 // Gets the other window's object and assigns it to a variable
 
-                this.Visibility = Visibility.Hidden;
-                // Hides the current window, incase the user presses the back button.
+                this.Close();
+                // Closes this window.
 
                 loginWin.Show();
                 // Displays the assigned window.

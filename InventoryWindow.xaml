@@ -9,39 +9,50 @@
         ResizeMode="NoResize">
 
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="644" Stroke="#FFE4E4E4" Fill="#FFEFEFEF" VerticalAlignment="Top" Width="719" Margin="820,97,0,0"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="111*"/>
+            <RowDefinition Height="773*"/>
+        </Grid.RowDefinitions>
+        <Rectangle HorizontalAlignment="Left" Height="644" Stroke="#FFE4E4E4" Fill="#FFEFEFEF" VerticalAlignment="Top" Width="719" Margin="820,97,0,0" Grid.RowSpan="2"/>
         <Rectangle HorizontalAlignment="Center" Height="80" Stroke="#FFE4E4E4" Fill="#FFEFEFEF" VerticalAlignment="Top" Width="1600"/>
 
         <!-- Buttons -->
-        <Button x:Name="LogoutButton" Content="LOGOUT" HorizontalAlignment="Left" Margin="1482,10,0,0" VerticalAlignment="Top" Height="57" Width="98"/>
+        <Button x:Name="LogoutButton" Content="LOGOUT" HorizontalAlignment="Left" Margin="1482,10,0,0" VerticalAlignment="Top" Height="57" Width="98" Click="LogoutButton_Click"/>
 
-        <Button Content="ADD CAR" HorizontalAlignment="Left" Margin="1114,677,0,0" VerticalAlignment="Top" Height="54" Width="132" FontSize="16" Click="AddCar_Click"/>
-        <Button x:Name="ModButton" Content="MODIFY CAR" HorizontalAlignment="Left" Margin="339,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" Click="ModCar_Click"/>
-        <Button Content="SELL CAR" HorizontalAlignment="Left" Margin="61,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" Click="SellCar_Click"/>
-        <Button Content="DELETE CAR" HorizontalAlignment="Left" Margin="200,747,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" RenderTransformOrigin="0.955,0.482" Click="DeleteCar_Click"/>
+        <Button Content="ADD CAR" HorizontalAlignment="Left" Margin="1114,566,0,0" VerticalAlignment="Top" Height="54" Width="132" FontSize="16" Click="AddCar_Click" Grid.Row="1"/>
+        <Button x:Name="ModButton" Content="MODIFY CAR" HorizontalAlignment="Left" Margin="339,636,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" Click="ModCar_Click" Grid.Row="1"/>
+        <Button Content="SELL CAR" HorizontalAlignment="Left" Margin="61,636,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" Click="SellCar_Click" Grid.Row="1"/>
+        <Button Content="DELETE CAR" HorizontalAlignment="Left" Margin="200,636,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" RenderTransformOrigin="0.955,0.482" Click="DeleteCar_Click" Grid.Row="1"/>
 
-        <DataGrid x:Name="CarDataGrid" HorizontalAlignment="Left" Height="644" Margin="61,95,0,0" VerticalAlignment="Top" Width="719" IsReadOnly="True"/>
+        <Button Content="REFRESH" HorizontalAlignment="Left" Margin="705,636,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="54" Width="75" Click="RefreshButton_Click"/>
+        <Button Content="Import" HorizontalAlignment="Left" Margin="721,37,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59" FontSize="14" Click="Import_Click"/>
+        
+        <!-- Data Grid -->
+        <DataGrid x:Name="CarDataGrid" HorizontalAlignment="Left" Height="566" Margin="61,62,0,0" VerticalAlignment="Top" Width="719" IsReadOnly="True" Grid.Row="1"/>
 
         <!-- Textblocks -->
         <TextBlock HorizontalAlignment="Center" Margin="0,22,0,0" TextWrapping="Wrap" Text="Inventory" VerticalAlignment="Top" Height="48" RenderTransformOrigin="0.5,0.5" Width="172" FontSize="24" TextAlignment="Center"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="820,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" RenderTransformOrigin="0.5,0.5" Width="719" FontSize="24" TextAlignment="Center" Background="White"><Run Language="en-gb" Text="Add a New Car"/></TextBlock>
-        <TextBlock x:Name="WarningText" HorizontalAlignment="Left" Margin="820,578,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="63" Width="719" TextAlignment="Center" FontSize="16" Background="White"><Run Language="en-gb"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="820,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" RenderTransformOrigin="0.5,0.5" Width="719" FontSize="24" TextAlignment="Center" Background="White" Grid.Row="1"><Run Language="en-gb" Text="Add a New Car"/></TextBlock>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Left" Margin="820,467,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="63" Width="719" TextAlignment="Center" FontSize="16" Background="White" Grid.Row="1"><Run Language="en-gb"/></TextBlock>
 
-        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White"><Run Text="Car Brand"/><Run Language="en-gb" Text=":"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White"><Run Text="Car "/><Run Language="en-gb" Text="Model:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White"><Run Text="Car "/><Run Language="en-gb" Text="Make:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White"><Run Text="Car "/><Run Language="en-gb" Text="Price (£):"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White"><Run Text="Car "/><Run Language="en-gb" Text="Colour:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White" Grid.Row="1"><Run Text="Car Brand"/><Run Language="en-gb" Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White" Grid.Row="1"><Run Text="Car "/><Run Language="en-gb" Text="Model:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White" Grid.Row="1"><Run Text="Car "/><Run Language="en-gb" Text="Make:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White" Grid.Row="1"><Run Text="Car "/><Run Language="en-gb" Text="Price (£):"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White" Grid.Row="1"><Run Text="Car "/><Run Language="en-gb" Text="Colour:"/></TextBlock>
+
+        <TextBlock x:Name="CarsSoldTxt" HorizontalAlignment="Left" Margin="61,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="117" Grid.Row="1" FontSize="16"><Run Language="en-gb" Text="Cars Sold:"/></TextBlock>
+        <TextBlock x:Name="CarsRevenueTxt" HorizontalAlignment="Left" Margin="189,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="170" Grid.Row="1" FontSize="16"><Run Text="Total Revenue"/><Run Language="en-gb" Text=":"/></TextBlock>
 
         <!-- Textboxes -->
-        <TextBox x:Name="BrandTextbox" HorizontalAlignment="Left" Margin="1185,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16"/>
-        <TextBox x:Name="ModelTextbox" HorizontalAlignment="Left" Margin="1185,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16"/>
-        <TextBox x:Name="MakeTextbox" HorizontalAlignment="Left" Margin="1185,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16"/>
-        <TextBox x:Name="PriceTextbox" HorizontalAlignment="Left" Margin="1185,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16"/>
-        <TextBox x:Name="ColourTextbox" HorizontalAlignment="Left" Margin="1185,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16"/>
+        <TextBox x:Name="BrandTextbox" HorizontalAlignment="Left" Margin="1185,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16" Grid.Row="1"/>
+        <TextBox x:Name="ModelTextbox" HorizontalAlignment="Left" Margin="1185,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16" Grid.Row="1"/>
+        <TextBox x:Name="MakeTextbox" HorizontalAlignment="Left" Margin="1185,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16" Grid.Row="1"/>
+        <TextBox x:Name="PriceTextbox" HorizontalAlignment="Left" Margin="1185,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16" Grid.Row="1"/>
+        <TextBox x:Name="ColourTextbox" HorizontalAlignment="Left" Margin="1185,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16" Grid.Row="1"/>
 
         <!-- Checkbox -->
-        <CheckBox x:Name="ConfirmBox" Content="Confirm to Continue" HorizontalAlignment="Left" Height="18" Margin="1114,654,0,0" VerticalAlignment="Top" Width="148"/>
+        <CheckBox x:Name="ConfirmBox" Content="Confirm to Continue" HorizontalAlignment="Left" Height="18" Margin="1114,543,0,0" VerticalAlignment="Top" Width="148" Grid.Row="1"/>
     </Grid>
 </Window>
