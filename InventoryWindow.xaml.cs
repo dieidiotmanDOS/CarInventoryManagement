@@ -470,5 +470,12 @@ namespace CarInventoryManagement
                 MessageBox.Show("You can only import .csv files...");
             }
         }
+
+        private void FindCar_Click(object sender, RoutedEventArgs e)
+        {
+            CarSearcher carSearcher = new CarSearcher();
+            carSearcher.ShowDialog();
+            // Show the window to search for cars.
+        }
     }
 }

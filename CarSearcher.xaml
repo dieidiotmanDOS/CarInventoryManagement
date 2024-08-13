@@ -1,0 +1,38 @@
+﻿<Window x:Class="CarInventoryManagement.CarSearcher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarInventoryManagement"
+        mc:Ignorable="d"
+        Title="Car Finder" Height="350" Width="800"
+        ResizeMode="NoResize">
+    <Grid>
+
+        <Rectangle HorizontalAlignment="Center" Height="60" Stroke="#FFE4E4E4" Fill="#FFEFEFEF" VerticalAlignment="Top" Width="800"/>
+
+        <!-- Comboboxes -->
+        <ComboBox x:Name="SearchCombo" IsEditable="True" IsReadOnly="True" Text="Select" FontSize="16" HorizontalAlignment="Left" Margin="361,131,0,0" VerticalAlignment="Top" Width="125" Height="26">
+            <ComboBoxItem Content="Car ID"></ComboBoxItem>
+            <ComboBoxItem Content="Brand"></ComboBoxItem>
+            <ComboBoxItem Content="Model"></ComboBoxItem>
+            <ComboBoxItem Content="Make"></ComboBoxItem>
+            <ComboBoxItem Content="Colour"></ComboBoxItem>
+        </ComboBox>
+
+        <!-- Textboxes -->
+        <TextBox x:Name="FindTextbox" HorizontalAlignment="Left" Margin="361,160,0,0" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Top" Width="125" Height="25"/>
+        <TextBox x:Name="NumToFindText" HorizontalAlignment="Left" Margin="361,188,0,0" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Top" Width="125" Height="24"/>
+
+        <!-- Text Blocks-->
+        <TextBlock HorizontalAlignment="Center" Margin="0,17,0,0" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" VerticalAlignment="Top" Width="780"><Run Language="en-gb" Text="Find a Car"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="313,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="2.815,0.525" Width="48"><Run Language="en-gb" Text="Find:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="313,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="2.815,0.525" Text="Type:" Width="48"/>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,217,0,0" TextWrapping="Wrap" FontSize="14" TextAlignment="Center" VerticalAlignment="Top" Width="352" Height="44"/>
+        <TextBlock HorizontalAlignment="Left" Margin="267,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="2.815,0.525" Width="79"><Run Language="en-gb" Text="How many:"/></TextBlock>
+
+        <!-- Buttons -->
+        <Button Content="Find Car" HorizontalAlignment="Center" Margin="0,266,0,0" VerticalAlignment="Top" FontSize="16" Width="98" Click="Find_Click"/>
+
+    </Grid>
+</Window>

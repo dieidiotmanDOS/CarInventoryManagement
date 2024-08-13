@@ -23,7 +23,8 @@
         <Button x:Name="ModButton" Content="MODIFY CAR" HorizontalAlignment="Left" Margin="339,636,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" Click="ModCar_Click" Grid.Row="1"/>
         <Button Content="SELL CAR" HorizontalAlignment="Left" Margin="61,636,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" Click="SellCar_Click" Grid.Row="1"/>
         <Button Content="DELETE CAR" HorizontalAlignment="Left" Margin="200,636,0,0" VerticalAlignment="Top" Height="54" Width="134" FontSize="16" RenderTransformOrigin="0.955,0.482" Click="DeleteCar_Click" Grid.Row="1"/>
-
+        <Button Content="FIND CAR" HorizontalAlignment="Left" Margin="590,636,0,0" VerticalAlignment="Top" Height="54" Width="110" FontSize="16" Grid.Row="1" Click="FindCar_Click"/>
+        
         <Button Content="REFRESH" HorizontalAlignment="Left" Margin="705,636,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="54" Width="75" Click="RefreshButton_Click"/>
         <Button Content="Import" HorizontalAlignment="Left" Margin="721,37,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59" FontSize="14" Click="Import_Click"/>
         
@@ -54,5 +55,6 @@
 
         <!-- Checkbox -->
         <CheckBox x:Name="ConfirmBox" Content="Confirm to Continue" HorizontalAlignment="Left" Height="18" Margin="1114,543,0,0" VerticalAlignment="Top" Width="148" Grid.Row="1"/>
+        
     </Grid>
 </Window>
