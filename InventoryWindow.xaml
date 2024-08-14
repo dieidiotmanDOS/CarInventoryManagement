@@ -44,7 +44,7 @@
         <TextBlock HorizontalAlignment="Left" Height="19" Margin="1028,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="16" Foreground="Black" Background="White" Grid.Row="1"><Run Text="Car "/><Run Language="en-gb" Text="Colour:"/></TextBlock>
 
         <TextBlock x:Name="CarsSoldTxt" HorizontalAlignment="Left" Margin="61,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="117" Grid.Row="1" FontSize="16"><Run Language="en-gb" Text="Cars Sold:"/></TextBlock>
-        <TextBlock x:Name="CarsRevenueTxt" HorizontalAlignment="Left" Margin="189,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="170" Grid.Row="1" FontSize="16"><Run Text="Total Revenue"/><Run Language="en-gb" Text=":"/></TextBlock>
+        <TextBlock x:Name="CarsRevenueTxt" HorizontalAlignment="Left" Margin="189,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="314" Grid.Row="1" FontSize="16"><Run Text="Total Revenue"/><Run Language="en-gb" Text=":"/></TextBlock>
 
         <!-- Textboxes -->
         <TextBox x:Name="BrandTextbox" HorizontalAlignment="Left" Margin="1185,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FontSize="16" Grid.Row="1"/>

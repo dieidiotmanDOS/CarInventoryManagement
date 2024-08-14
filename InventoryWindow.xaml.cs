@@ -3,6 +3,7 @@ using CarInventoryManagement.Objects;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Win32;
+using System.Collections.Frozen;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -401,20 +402,18 @@ namespace CarInventoryManagement
             // Reads all records of the csv into an array.
 
             string cars_sold = "0";
-            string revenue = "0";
+            float f = 0f;
 
             foreach (var record in records_r)
             {
                 cars_sold = record.CarsSold.ToString();
-                revenue = record.TotalRevenue.ToString();
-                // Gets the values as they cannot be implicitly converted.
-
-
+                f = record.TotalRevenue;
             }
-            // Loops each record.
+
+            string revenue = string.Format("{0:F2}", f);
 
             CarsSoldTxt.Text = $"Cars Sold: {cars_sold}";
-            CarsRevenueTxt.Text = $"Total Revenue: {revenue}";
+            CarsRevenueTxt.Text = $"Total Revenue: £{revenue}";
             // Displays the values.
             
 
