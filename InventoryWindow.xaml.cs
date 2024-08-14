@@ -224,7 +224,7 @@ namespace CarInventoryManagement
             newCar.CarPrice = PriceTextbox.Text;
             newCar.CarColour = ColourTextbox.Text;
             // Sets each attribute to what the user has written.
-
+            
             string firstline;
             // Initialises the variable.
 
@@ -253,6 +253,7 @@ namespace CarInventoryManagement
                     csv.WriteRecords(records);
                 }
                 // This writes the information directly to the file, it will create a new file if 1 is not found.
+
             }
             else
             {
@@ -276,6 +277,9 @@ namespace CarInventoryManagement
                 }
                 // This writes the information directly to the file, it will create a new file if 1 is not found.
             }
+
+            LogData.LogInfo(newCar, 0);
+            // Log the event into the carlog.txt file.
         }
 
         private void ProcessSale()
@@ -327,6 +331,9 @@ namespace CarInventoryManagement
             GetCarIdPopup getCarId = new GetCarIdPopup();
             getCarId.ShowDialog();
 
+            LogData.LogInfo(desiredCar, 1);
+            // Log the event into the carlog.txt file.
+
             LoadDataTable();
             // Reloads the table after a record is deleted it is deleted.
         }
@@ -340,6 +347,9 @@ namespace CarInventoryManagement
 
             GetCarIdPopup getCarId = new GetCarIdPopup();
             getCarId.ShowDialog();
+
+            LogData.LogInfo(desiredCar, 2);
+            // Log the event into the carlog.txt file.
 
             ProcessSale();
 
