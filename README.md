@@ -1,6 +1,6 @@
 Car Inventory Management or CIM is a software developed by Artin Yousefinia using Visual Studio 2022 with the help of Windows Presentation Form in C#.
 
-Progress: 56% -As of 07/08/2024
+Progress: Completed -As of 14/08/2024 *Waiting for approval*
 
 Features:
 > User is able to setup their system, though with many bugs, missing functionality and major issues across the field. -As of 24/07/2024
